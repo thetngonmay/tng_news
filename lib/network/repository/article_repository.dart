@@ -13,7 +13,7 @@ class ArticleRepository {
     required String query,
     required String country,
 }){
-    final url = "${EndPoint.topHeadline(country)}&q=$query";
+    final url = EndPoint.topHeadline(country,query);
     return api.get<ArticleResponseData>(url, fromJson: (json) => ArticleResponseData.fromMap(json));
   }
 

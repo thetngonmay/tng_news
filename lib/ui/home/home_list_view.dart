@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:thg_news/network/response/news/article_data.dart';
 
 class HomeListView extends StatefulWidget {
-  final String listName;
   final List<ArticleData> data;
 
-  const HomeListView({super.key, required this.listName, required this.data});
+  const HomeListView({super.key, required this.data});
 
   @override
   State<StatefulWidget> createState() => HomeListViewState();

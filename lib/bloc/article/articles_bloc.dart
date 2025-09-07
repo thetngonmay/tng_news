@@ -16,7 +16,9 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
   final ArticleRepository repo;
 
   ArticlesBloc(this.repo) : super(ArticlesInitial()) {
+
     on<FetchArticles>(_fetchHeadLine);
+
   }
 
   Future<void> _fetchHeadLine(

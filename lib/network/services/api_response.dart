@@ -5,11 +5,11 @@ sealed class ApiResponse<S, E extends ApiErrorResponse>{
 }
 
 final class Success<S, E extends ApiErrorResponse> extends ApiResponse<S,E>{
-  const Success(this.data);
   final S data;
+  const Success(this.data);
 }
 
 final class Fail<S,E extends ApiErrorResponse> extends ApiResponse<S,E>{
-  const Fail(this.error);
   final E error;
+  const Fail(this.error);
 }

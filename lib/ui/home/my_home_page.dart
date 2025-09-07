@@ -98,43 +98,44 @@ class MyHomePageState extends State<MyHomePage>{
             IconButton(onPressed: onNotificationClick, icon: Icon(Icons.notifications_none)),
           ],
         ),
-        body: ListView(
-          children: [
-            HomeSlider(),
-            Container(
-              child: Column(
-                children: [
-                  Padding(padding: EdgeInsets.only(top: 15)),
-                  HomeTopTab(selectedTab,
-                  onTabChanged: onTabChanged,),
-                  BlocBuilder<ArticlesBloc, ArticlesState>(
-                    builder: (context, state){
-                      if(state is ArticlesLoading){
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      if(state is ArticlesError){
-                        return Center(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 16),
-                            child: Text(state.message,)
-                          ),
-                        );
-                      }
-                      if(state is ArticlesLoaded){
-                        return HomeListView(
-                          listName: "Latest News",
-                          data: state.articles,
-                        );
-                      }
-                      return const SizedBox.shrink();
-                    },
-                  ),
-                ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              HomeSlider(),
+              Container(
+                child: Column(
+                  children: [
+                    Padding(padding: EdgeInsets.only(top: 15)),
+                    HomeTopTab(selectedTab,
+                      onTabChanged: onTabChanged,),
+                    BlocBuilder<ArticlesBloc, ArticlesState>(
+                      builder: (context, state){
+                        if(state is ArticlesLoading){
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        if(state is ArticlesError){
+                          return Center(
+                            child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                child: Text(state.message,)
+                            ),
+                          );
+                        }
+                        if(state is ArticlesLoaded){
+                          return HomeListView(
+                            data: state.articles,
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         )
     );
   }

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider<ArticlesBloc>(create: (context) => ArticlesBloc(ArticleRepository(API())))
+          BlocProvider<ArticlesBloc>(create: (context) => ArticlesBloc(ArticleRepository(API()))),
         ],
         child:  MaterialApp(
           title: 'Tnm Demo',
