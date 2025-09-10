@@ -124,9 +124,8 @@ class MyHomePageState extends State<MyHomePage>{
                           );
                         }
                         if(state is ArticlesLoaded){
-                          return HomeListView(
-                            data: state.articles,
-                          );
+                          return HomeListView(data: state.articles);
+
                         }
                         return const SizedBox.shrink();
                       },

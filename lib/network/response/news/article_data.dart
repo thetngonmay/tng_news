@@ -1,7 +1,8 @@
 
+import 'package:thg_news/database/base_model.dart';
 import 'package:thg_news/network/response/news/source_data.dart';
 
-class ArticleData{
+class ArticleData implements BaseModel{
   final SourceData source;
   final String author;
   final String title;
@@ -27,9 +28,22 @@ class ArticleData{
     );
   }
 
+  factory ArticleData.fromDb(Map<String, dynamic> map){
+    return ArticleData(
+      SourceData.fromDbString(map['source']),
+      map['author']??"",
+      map['title']??"",
+      map ['description']??"",
+      map['url']??"",
+      map['urlToImage']??"",
+      map ['publishedAt']??"",
+      map['content']??"",
+    );
+  }
+  @override
   Map<String, dynamic> toMap(){
     return {
-      'source': source.toMap(),
+      'source': source.toDbString(),
       'author': author,
       'title': title,
       'description': description,

@@ -27,7 +27,10 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
   ) async {
     emit(ArticlesLoading());
 
-    final response = await repo.fetchHeadline(query: event.query, country: event.country);
+    final response = await repo.fetchHeadline(
+        query: event.query,
+        country: event.country
+    );
 
     if(response is Success<ArticleResponseData, ApiErrorResponse>){
       emit(ArticlesLoaded(response.data.articles));
